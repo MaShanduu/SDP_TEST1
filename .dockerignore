@@ -1,0 +1,11 @@
+# Build context excludes (keep the image build fast and small)
+
+**/node_modules
+frontend/dist
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+data
+.scratch
+.git
+*.sqlite3*

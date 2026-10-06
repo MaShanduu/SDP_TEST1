@@ -1,0 +1,14 @@
+services:
+  rat:
+    build: .
+    image: rat:latest
+    ports:
+      - "8000:8000"
+    environment:
+      RAT_DATA_DIR: /data
+    volumes:
+      - rat-data:/data
+    restart: unless-stopped
+
+volumes:
+  rat-data:

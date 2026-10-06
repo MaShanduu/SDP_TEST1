@@ -2,13 +2,26 @@
 
 University of the Witwatersrand — COMS3011A test project.
 
-Git repositories are opaque: it is hard to see how a project evolved, who had the most
-impact where, and which parts are the most volatile. **RAT** is a web dashboard that
-answers those questions. It ingests a repository (deep-cloned URL or zip with `.git`),
-indexes its history once, and computes the brief's file, directory, repository,
-commit-set and author metrics (spec §2.1–§2.5) exactly as defined — including rename
-detection at 50 % similarity, binary exclusion, deletion attribution and
-committer-date commit sets.
+RAT is a web dashboard for understanding how Git repositories evolve: which files
+and directories churn, who contributed to each scope, and how metrics change over
+custom commit sets.
+
+## Table of Contents
+
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Quick start](#quick-start)
+  - [Local](#local-recommended)
+  - [Docker](#docker)
+- [Architecture](#architecture)
+- [Metric mapping (spec → implementation)](#metric-mapping-spec--implementation)
+- [Spec edge cases — how they are handled](#spec-edge-cases--how-they-are-handled)
+- [API](#api)
+- [CLI](#cli)
+- [Benchmarks](#benchmarks)
+- [Tests](#tests)
+- [Project layout](#project-layout)
+- [Notes](#notes)
 
 ## Features
 

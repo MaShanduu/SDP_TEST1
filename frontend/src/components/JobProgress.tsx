@@ -17,7 +17,7 @@ export default function JobProgress({ job, className = "" }: { job: Job; classNa
         <span className="truncate">{label}</span>
         {!failed ? <span className="tabular-nums">{pct}%</span> : null}
       </div>
-      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-ink-800">
+      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-sky-200">
         <div
           className={`h-full rounded-full transition-all ${
             failed ? "bg-rose-500" : done ? "bg-emerald-500" : "bg-accent"
@@ -26,7 +26,7 @@ export default function JobProgress({ job, className = "" }: { job: Job; classNa
         />
       </div>
       {failed && job.error ? (
-        <p className="mt-1 break-words text-xs text-rose-300">{job.error}</p>
+        <p className="mt-1 break-words text-xs text-rose-700">{job.error}</p>
       ) : null}
     </div>
   );

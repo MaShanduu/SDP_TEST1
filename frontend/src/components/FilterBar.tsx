@@ -105,7 +105,7 @@ function PathPicker({ repoId }: { repoId: number }) {
       {path ? (
         <button
           type="button"
-          className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded px-1 text-sm text-slate-500 hover:text-slate-200"
+          className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded px-1 text-sm text-slate-500 hover:text-slate-900"
           onMouseDown={(event) => event.preventDefault()}
           onClick={() => setPath("")}
           title="Clear scope"
@@ -114,10 +114,10 @@ function PathPicker({ repoId }: { repoId: number }) {
         </button>
       ) : null}
       {open ? (
-        <div className="absolute left-0 top-full z-30 mt-1 max-h-80 w-[28rem] max-w-[80vw] overflow-auto rounded-lg border border-ink-700 bg-ink-900 shadow-xl">
+        <div className="absolute left-0 top-full z-30 mt-1 max-h-80 w-[28rem] max-w-[80vw] overflow-auto rounded-lg border border-sky-200 bg-white shadow-xl">
           <button
             type="button"
-            className="flex w-full items-center gap-2 px-3 py-2 text-left text-xs text-slate-300 hover:bg-ink-800"
+            className="flex w-full items-center gap-2 px-3 py-2 text-left text-xs text-slate-700 hover:bg-sky-100"
             onMouseDown={(event) => {
               event.preventDefault();
               window.clearTimeout(blurTimer.current);
@@ -136,7 +136,7 @@ function PathPicker({ repoId }: { repoId: number }) {
             <button
               key={entry.path}
               type="button"
-              className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-xs hover:bg-ink-800"
+              className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-xs hover:bg-sky-100"
               onMouseDown={(event) => {
                 event.preventDefault();
                 window.clearTimeout(blurTimer.current);
@@ -145,7 +145,7 @@ function PathPicker({ repoId }: { repoId: number }) {
               title={entry.path}
             >
               <span className="mono shrink-0 text-slate-600">{entry.kind}</span>
-              <span className="truncate text-slate-300">{entry.path}</span>
+              <span className="truncate text-slate-700">{entry.path}</span>
             </button>
           ))}
           {!loading && options.length === 0 ? (
@@ -173,10 +173,10 @@ function AuthorFilter({ authors }: { authors: Author[] }) {
       {open ? (
         <>
           <div className="fixed inset-0 z-20" onClick={() => setOpen(false)} />
-          <div className="absolute left-0 top-full z-30 mt-1 max-h-80 w-72 overflow-auto rounded-lg border border-ink-700 bg-ink-900 shadow-xl">
-            <div className="flex items-center justify-between border-b border-ink-800 px-3 py-2 text-xs text-slate-500">
+          <div className="absolute left-0 top-full z-30 mt-1 max-h-80 w-72 overflow-auto rounded-lg border border-sky-200 bg-white shadow-xl">
+            <div className="flex items-center justify-between border-b border-sky-200 px-3 py-2 text-xs text-slate-500">
               <span>Filter by author</span>
-              <button type="button" className="hover:text-slate-200" onClick={clearAuthors}>
+              <button type="button" className="hover:text-slate-900" onClick={clearAuthors}>
                 Clear
               </button>
             </div>
@@ -186,7 +186,7 @@ function AuthorFilter({ authors }: { authors: Author[] }) {
             {authors.map((author) => (
               <label
                 key={author.id}
-                className="flex cursor-pointer items-center gap-2 px-3 py-1.5 text-xs hover:bg-ink-800"
+                className="flex cursor-pointer items-center gap-2 px-3 py-1.5 text-xs hover:bg-sky-100"
                 title={author.email}
               >
                 <input
@@ -194,7 +194,7 @@ function AuthorFilter({ authors }: { authors: Author[] }) {
                   checked={selected.has(author.id)}
                   onChange={() => toggleAuthor(author.id)}
                 />
-                <span className="min-w-0 flex-1 truncate text-slate-300">{author.name}</span>
+                <span className="min-w-0 flex-1 truncate text-slate-700">{author.name}</span>
                 <span className="tabular-nums text-slate-600">{formatInt(author.n_commits)}</span>
               </label>
             ))}
@@ -215,7 +215,7 @@ const MODE_LABELS: Array<{ key: CommitMode; label: string }> = [
 function ModeTabs() {
   const { mode, setMode } = useFilters();
   return (
-    <div className="flex rounded-lg bg-ink-850 p-0.5">
+    <div className="flex rounded-lg bg-sky-100 p-0.5">
       {MODE_LABELS.map(({ key, label }) => (
         <button
           key={key}

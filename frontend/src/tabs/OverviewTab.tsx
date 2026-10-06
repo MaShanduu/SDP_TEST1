@@ -92,10 +92,10 @@ export default function OverviewTab({ repo }: { repo: Repo }) {
 
       <section className="card p-3">
         <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-          <span className="rounded bg-ink-850 px-1.5 py-0.5 text-slate-400">
+          <span className="rounded bg-sky-100 px-1.5 py-0.5 text-slate-600">
             scope: {metrics ? metrics.scope.kind : path ? "…" : "repo"}
           </span>
-          <span className="mono truncate text-slate-300" title={metrics?.scope.path || ""}>
+          <span className="mono truncate text-slate-700" title={metrics?.scope.path || ""}>
             {metrics?.scope.path || "repository root"}
           </span>
           <span className="ml-auto">
@@ -130,8 +130,8 @@ export default function OverviewTab({ repo }: { repo: Repo }) {
 
       <section className="card p-4">
         <div className="flex flex-wrap items-center gap-3">
-          <h3 className="text-sm font-semibold text-white">Line activity over the commit set</h3>
-          <div className="ml-auto flex rounded-lg bg-ink-850 p-0.5">
+          <h3 className="text-sm font-semibold text-slate-950">Line activity over the commit set</h3>
+          <div className="ml-auto flex rounded-lg bg-sky-100 p-0.5">
             {BUCKETS.map((key) => (
               <button
                 key={key}
@@ -208,7 +208,7 @@ export default function OverviewTab({ repo }: { repo: Repo }) {
 
       <section className="card overflow-hidden">
         <header className="px-4 py-3">
-          <h3 className="text-sm font-semibold text-white">Author impact on this scope (spec §2.5)</h3>
+          <h3 className="text-sm font-semibold text-slate-950">Author impact on this scope (spec §2.5)</h3>
           <p className="mt-0.5 text-xs text-slate-500">
             The author filter is ignored here so ownership shares always sum to 100% for the current
             scope and commit set.
@@ -223,7 +223,7 @@ export default function OverviewTab({ repo }: { repo: Repo }) {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
-              <thead className="border-y border-ink-800 bg-ink-900/60">
+              <thead className="border-y border-sky-200 bg-sky-50/80">
                 <tr>
                   <th className="th">Author</th>
                   <th className="th text-right">Commits</th>
@@ -236,25 +236,25 @@ export default function OverviewTab({ repo }: { repo: Repo }) {
               </thead>
               <tbody>
                 {topContributors.map((author) => (
-                  <tr key={author.author_id} className="border-b border-ink-900 hover:bg-ink-850">
+                  <tr key={author.author_id} className="border-b border-sky-100 hover:bg-sky-100">
                     <td className="td">
-                      <div className="text-slate-200">{author.name}</div>
+                      <div className="text-slate-800">{author.name}</div>
                       <div className="text-xs text-slate-600">{author.email}</div>
                     </td>
                     <td className="td text-right tabular-nums">{formatInt(author.n_commits)}</td>
-                    <td className="td text-right tabular-nums text-emerald-300">{formatDelta(author.added)}</td>
-                    <td className="td text-right tabular-nums text-rose-300">{formatInt(author.removed)}</td>
+                    <td className="td text-right tabular-nums text-emerald-700">{formatDelta(author.added)}</td>
+                    <td className="td text-right tabular-nums text-rose-700">{formatInt(author.removed)}</td>
                     <td className="td text-right tabular-nums">{formatInt(author.churn)}</td>
                     <td className="td text-right tabular-nums">{formatInt(author.modifications)}</td>
                     <td className="td">
                       <div className="flex items-center gap-2">
-                        <div className="h-1.5 w-32 overflow-hidden rounded-full bg-ink-800">
+                        <div className="h-1.5 w-32 overflow-hidden rounded-full bg-sky-200">
                           <div
                             className="h-full rounded-full bg-accent"
                             style={{ width: `${Math.max(2, author.ownership * 100)}%` }}
                           />
                         </div>
-                        <span className="tabular-nums text-xs text-slate-400">
+                        <span className="tabular-nums text-xs text-slate-600">
                           {formatPercent(author.ownership)}
                         </span>
                       </div>

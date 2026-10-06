@@ -5,15 +5,15 @@ export default {
     extend: {
       colors: {
         ink: {
-          950: "#0b0f14",
-          900: "#0f151d",
-          850: "#131a24",
-          800: "#1a2330",
-          700: "#26313f",
+          950: "#f8fbff",
+          900: "#eef6ff",
+          850: "#e3f0ff",
+          800: "#cfe3fb",
+          700: "#9fc5ef",
         },
         accent: {
-          DEFAULT: "#38bdf8",
-          soft: "#7dd3fc",
+          DEFAULT: "#2563eb",
+          soft: "#60a5fa",
         },
       },
     },

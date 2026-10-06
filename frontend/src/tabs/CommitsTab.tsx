@@ -72,7 +72,7 @@ export default function CommitsTab({ repo }: { repo: Repo }) {
 
       <section className="card overflow-hidden">
         <header className="flex flex-wrap items-center gap-3 px-4 py-3">
-          <h3 className="text-sm font-semibold text-white">Commits in the commit set</h3>
+          <h3 className="text-sm font-semibold text-slate-950">Commits in the commit set</h3>
           <span className="text-xs text-slate-500">
             {formatInt(total)} commit{total === 1 ? "" : "s"}
             {path ? ` touching ${path}` : ""}
@@ -108,7 +108,7 @@ export default function CommitsTab({ repo }: { repo: Repo }) {
           <>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
-                <thead className="border-y border-ink-800 bg-ink-900/60">
+                <thead className="border-y border-sky-200 bg-sky-50/80">
                   <tr>
                     {mode === "list" ? <th className="th w-8"> </th> : null}
                     <th className="th">Commit</th>
@@ -124,7 +124,7 @@ export default function CommitsTab({ repo }: { repo: Repo }) {
                   {page.rows.map((row) => (
                     <tr
                       key={row.sha}
-                      className="cursor-pointer border-b border-ink-900 hover:bg-ink-850"
+                      className="cursor-pointer border-b border-sky-100 hover:bg-sky-50"
                       onClick={() => void openDetail(row.sha)}
                     >
                       {mode === "list" ? (
@@ -140,7 +140,7 @@ export default function CommitsTab({ repo }: { repo: Repo }) {
                       <td className="td max-w-[34rem]">
                         <div className="flex items-center gap-2">
                           <span className="mono shrink-0 text-accent">{shortSha(row.sha)}</span>
-                          <span className="truncate text-slate-200" title={row.subject}>
+                          <span className="truncate text-slate-800" title={row.subject}>
                             {row.subject || "(no subject)"}
                           </span>
                           {selected.has(row.sha) ? (
@@ -150,23 +150,23 @@ export default function CommitsTab({ repo }: { repo: Repo }) {
                           ) : null}
                         </div>
                       </td>
-                      <td className="td whitespace-nowrap text-slate-400">{formatTs(row.ct, true)}</td>
-                      <td className="td text-slate-300">{row.author_name}</td>
+                      <td className="td whitespace-nowrap text-slate-600">{formatTs(row.ct, true)}</td>
+                      <td className="td text-slate-700">{row.author_name}</td>
                       <td
-                        className="td text-right tabular-nums text-emerald-300"
+                        className="td text-right tabular-nums text-emerald-700"
                         title={`Whole commit: +${formatInt(row.total_added)} / -${formatInt(row.total_removed)} lines in ${formatInt(row.total_n_files)} files`}
                       >
                         {formatDelta(row.added)}
                       </td>
-                      <td className="td text-right tabular-nums text-rose-300">{formatInt(row.removed)}</td>
+                      <td className="td text-right tabular-nums text-rose-700">{formatInt(row.removed)}</td>
                       <td className="td text-right tabular-nums">{formatInt(row.churn)}</td>
-                      <td className="td text-right tabular-nums text-slate-400">{formatInt(row.n_files)}</td>
+                      <td className="td text-right tabular-nums text-slate-600">{formatInt(row.n_files)}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <footer className="flex items-center gap-2 border-t border-ink-800 px-4 py-2 text-xs text-slate-500">
+            <footer className="flex items-center gap-2 border-t border-sky-200 px-4 py-2 text-xs text-slate-500">
               <span>
                 {total === 0 ? "0" : `${offset + 1}–${Math.min(offset + PAGE_SIZE, total)}`} of {formatInt(total)}
               </span>
@@ -205,10 +205,10 @@ function DetailDrawer({ detail, onClose }: { detail: CommitDetail; onClose: () =
   return (
     <div className="fixed inset-0 z-40 flex justify-end bg-black/50" onClick={onClose}>
       <aside
-        className="flex h-full w-full max-w-xl flex-col border-l border-ink-700 bg-ink-900"
+        className="flex h-full w-full max-w-xl flex-col border-l border-sky-200 bg-white"
         onClick={(event) => event.stopPropagation()}
       >
-        <header className="border-b border-ink-800 p-4">
+        <header className="border-b border-sky-200 p-4">
           <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ function DetailDrawer({ detail, onClose }: { detail: CommitDetail; onClose: () =
                 </span>
                 <span className="text-xs text-slate-500">{formatTs(detail.ct, true)}</span>
               </div>
-              <h3 className="mt-1 break-words text-sm text-slate-100">{detail.subject || "(no subject)"}</h3>
+              <h3 className="mt-1 break-words text-sm text-slate-900">{detail.subject || "(no subject)"}</h3>
               <p className="mt-1 text-xs text-slate-500">
                 {detail.author_name} &lt;{detail.author_email}&gt;
                 {detail.identity_name && detail.identity_name !== detail.author_name ? (
@@ -238,11 +238,11 @@ function DetailDrawer({ detail, onClose }: { detail: CommitDetail; onClose: () =
             </button>
           </div>
           <div className="mt-3 flex flex-wrap gap-3 text-xs">
-            <span className="text-emerald-300">+{formatInt(detail.added)}</span>
-            <span className="text-rose-300">-{formatInt(detail.removed)}</span>
-            <span className="text-slate-400">growth {formatDelta(detail.growth)}</span>
-            <span className="text-slate-400">churn {formatInt(detail.churn)}</span>
-            <span className="text-slate-400">
+            <span className="text-emerald-700">+{formatInt(detail.added)}</span>
+            <span className="text-rose-700">-{formatInt(detail.removed)}</span>
+            <span className="text-slate-600">growth {formatDelta(detail.growth)}</span>
+            <span className="text-slate-600">churn {formatInt(detail.churn)}</span>
+            <span className="text-slate-600">
               {formatInt(detail.n_files)} file{detail.n_files === 1 ? "" : "s"}
             </span>
           </div>
@@ -252,7 +252,7 @@ function DetailDrawer({ detail, onClose }: { detail: CommitDetail; onClose: () =
             <p className="p-4 text-xs text-slate-500">No measured changes (merge or empty commit).</p>
           ) : (
             <table className="w-full border-collapse">
-              <thead className="border-b border-ink-800 bg-ink-900/60">
+              <thead className="border-b border-sky-200 bg-sky-50/80">
                 <tr>
                   <th className="th">File</th>
                   <th className="th text-right">Added</th>
@@ -261,28 +261,28 @@ function DetailDrawer({ detail, onClose }: { detail: CommitDetail; onClose: () =
               </thead>
               <tbody>
                 {detail.files.map((file) => (
-                  <tr key={`${file.path}~${file.old_path ?? ""}`} className="border-b border-ink-900">
+                  <tr key={`${file.path}~${file.old_path ?? ""}`} className="border-b border-sky-100">
                     <td className="td">
                       <div className="flex items-center gap-2">
-                        <span className="mono truncate text-slate-200" title={file.path}>
+                        <span className="mono truncate text-slate-800" title={file.path}>
                           {file.path}
                         </span>
                         {file.renamed && file.old_path ? (
-                          <span className="shrink-0 text-[11px] text-amber-300" title={`Renamed from ${file.old_path}`}>
+                          <span className="shrink-0 text-[11px] text-amber-700" title={`Renamed from ${file.old_path}`}>
                             ← {file.old_path}
                           </span>
                         ) : null}
                         {file.is_binary ? (
-                          <span className="shrink-0 rounded bg-ink-850 px-1.5 py-0.5 text-[11px] text-slate-500">
+                          <span className="shrink-0 rounded bg-sky-100 px-1.5 py-0.5 text-[11px] text-slate-500">
                             binary
                           </span>
                         ) : null}
                       </div>
                     </td>
-                    <td className="td text-right tabular-nums text-emerald-300">
+                    <td className="td text-right tabular-nums text-emerald-700">
                       {file.is_binary ? "–" : formatDelta(file.added)}
                     </td>
-                    <td className="td text-right tabular-nums text-rose-300">
+                    <td className="td text-right tabular-nums text-rose-700">
                       {file.is_binary ? "–" : formatInt(file.removed)}
                     </td>
                   </tr>

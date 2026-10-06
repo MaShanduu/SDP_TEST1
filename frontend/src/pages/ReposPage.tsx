@@ -41,7 +41,7 @@ export default function ReposPage() {
 
       <section>
         <div className="mb-3 flex items-baseline gap-3">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600">
             Repositories{repos ? ` (${repos.length})` : ""}
           </h2>
           {active ? (
@@ -123,8 +123,8 @@ function AddRepoPanel({ onCreated }: { onCreated: () => void }) {
   return (
     <form onSubmit={submit} className="card p-4">
       <div className="flex flex-wrap items-center gap-3">
-        <h2 className="text-sm font-semibold text-white">Add a repository</h2>
-        <div className="flex rounded-lg bg-ink-850 p-0.5">
+        <h2 className="text-sm font-semibold text-slate-950">Add a repository</h2>
+        <div className="flex rounded-lg bg-sky-100 p-0.5">
           <button
             type="button"
             className={mode === "url" ? "tab tab-active" : "tab"}
@@ -161,7 +161,7 @@ function AddRepoPanel({ onCreated }: { onCreated: () => void }) {
               key={fileKey}
               type="file"
               accept=".zip,application/zip"
-              className="input w-full file:mr-3 file:rounded file:border-0 file:bg-ink-700 file:px-2 file:py-1 file:text-xs file:text-slate-200"
+              className="input w-full file:mr-3 file:rounded file:border-0 file:bg-sky-200 file:px-2 file:py-1 file:text-xs file:text-slate-800"
               onChange={(event) => setFile(event.target.files?.[0] ?? null)}
             />
           </label>
@@ -190,7 +190,7 @@ function AddRepoPanel({ onCreated }: { onCreated: () => void }) {
           <ErrorBanner message={error} />
         </div>
       ) : null}
-      {notice ? <p className="mt-3 text-xs text-emerald-300">{notice}</p> : null}
+      {notice ? <p className="mt-3 text-xs text-emerald-700">{notice}</p> : null}
     </form>
   );
 }
@@ -269,7 +269,7 @@ function RepoCard({ repo, onChanged }: { repo: Repo; onChanged: () => void }) {
           </form>
         ) : (
           <>
-            <h3 className="min-w-0 flex-1 truncate text-sm font-semibold text-white" title={repo.name}>
+            <h3 className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-950" title={repo.name}>
               {repo.name}
             </h3>
             <StatusBadge status={repo.status} />
@@ -285,7 +285,7 @@ function RepoCard({ repo, onChanged }: { repo: Repo; onChanged: () => void }) {
       </header>
 
       <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-        <span className="mono rounded bg-ink-850 px-1.5 py-0.5 text-slate-400">{repo.source}</span>
+        <span className="mono rounded bg-sky-100 px-1.5 py-0.5 text-slate-600">{repo.source}</span>
         <span className="truncate" title={repo.source_ref}>
           {truncateMiddle(repo.source_ref, 48)}
         </span>
@@ -322,7 +322,7 @@ function RepoCard({ repo, onChanged }: { repo: Repo; onChanged: () => void }) {
           ) : (
             <p className="text-xs text-slate-500">Waiting to start…</p>
           )}
-          {repo.error ? <p className="break-words text-xs text-rose-300">{repo.error}</p> : null}
+          {repo.error ? <p className="break-words text-xs text-rose-700">{repo.error}</p> : null}
         </div>
       )}
 
@@ -360,7 +360,7 @@ function Stat({
   tone?: "pos" | "neg";
   title?: string;
 }) {
-  const cls = tone === "pos" ? "text-emerald-300" : tone === "neg" ? "text-rose-300" : "text-slate-200";
+  const cls = tone === "pos" ? "text-emerald-700" : tone === "neg" ? "text-rose-700" : "text-slate-800";
   return (
     <div title={title}>
       <dt className="text-slate-600">{label}</dt>

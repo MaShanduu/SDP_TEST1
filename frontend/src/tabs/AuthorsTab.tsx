@@ -132,17 +132,17 @@ export default function AuthorsTab({
 
       {suggestions.length > 0 ? (
         <section className="card p-4">
-          <h3 className="text-sm font-semibold text-white">Suggested merges</h3>
+          <h3 className="text-sm font-semibold text-slate-950">Suggested merges</h3>
           <p className="mt-0.5 text-xs text-slate-500">
             Identities that probably belong to the same person (shared email or near-identical name).
           </p>
           <div className="mt-2 divide-y divide-ink-800">
             {suggestions.map((suggestion, index) => (
               <div key={index} className="flex flex-wrap items-center gap-x-4 gap-y-2 py-2 text-xs">
-                <span className="rounded bg-ink-850 px-1.5 py-0.5 text-slate-500">{suggestion.reason}</span>
+                <span className="rounded bg-sky-100 px-1.5 py-0.5 text-slate-500">{suggestion.reason}</span>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   {suggestion.identities.map((identity) => (
-                    <span key={identity.id} className="text-slate-300" title={`identity #${identity.id}`}>
+                    <span key={identity.id} className="text-slate-700" title={`identity #${identity.id}`}>
                       {identity.name} &lt;{identity.email}&gt;{" "}
                       <span className="text-slate-600">({formatInt(identity.n_commits)} commits)</span>
                     </span>
@@ -164,7 +164,7 @@ export default function AuthorsTab({
 
       {selected.size > 0 ? (
         <section className="card flex flex-wrap items-center gap-3 p-3 text-xs">
-          <span className="text-slate-400">{selected.size} selected</span>
+          <span className="text-slate-600">{selected.size} selected</span>
           <label className="flex items-center gap-2 text-slate-500">
             merge into
             <select
@@ -211,7 +211,7 @@ export default function AuthorsTab({
 
       <section className="card overflow-hidden">
         <header className="flex flex-wrap items-center gap-3 px-4 py-3">
-          <h3 className="text-sm font-semibold text-white">Authors</h3>
+          <h3 className="text-sm font-semibold text-slate-950">Authors</h3>
           <span className="text-xs text-slate-500">
             {formatInt(authors.length)} effective author{authors.length === 1 ? "" : "s"} ·{" "}
             {formatInt(contributors?.length ?? 0)} with changes in this scope
@@ -230,7 +230,7 @@ export default function AuthorsTab({
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
-              <thead className="border-y border-ink-800 bg-ink-900/60">
+              <thead className="border-y border-sky-200 bg-sky-50/80">
                 <tr>
                   <th className="th w-8"> </th>
                   <th className="th">Author</th>
@@ -247,7 +247,7 @@ export default function AuthorsTab({
                   const stats = contributorsById.get(author.id);
                   const ownership = stats && scopedChurn > 0 ? stats.churn / scopedChurn : undefined;
                   return (
-                    <tr key={author.id} className="border-b border-ink-900 align-top hover:bg-ink-850">
+                    <tr key={author.id} className="border-b border-sky-100 align-top hover:bg-sky-100">
                       <td className="td">
                         <input
                           type="checkbox"
@@ -267,7 +267,7 @@ export default function AuthorsTab({
                           />
                         ) : (
                           <div className="flex items-center gap-2">
-                            <span className="text-slate-100">{author.name}</span>
+                            <span className="text-slate-900">{author.name}</span>
                             {author.is_manual ? (
                               <span className="rounded bg-accent/15 px-1.5 py-0.5 text-[11px] text-accent" title="Merged or renamed manually in the RAT">
                                 manual
@@ -285,13 +285,13 @@ export default function AuthorsTab({
                           <span className="text-xs text-slate-600">–</span>
                         ) : (
                           <div className="flex items-center gap-2">
-                            <div className="h-1.5 w-28 overflow-hidden rounded-full bg-ink-800">
+                            <div className="h-1.5 w-28 overflow-hidden rounded-full bg-sky-200">
                               <div
                                 className="h-full rounded-full bg-accent"
                                 style={{ width: `${Math.max(2, ownership * 100)}%` }}
                               />
                             </div>
-                            <span className="tabular-nums text-xs text-slate-400">{formatPercent(ownership)}</span>
+                            <span className="tabular-nums text-xs text-slate-600">{formatPercent(ownership)}</span>
                           </div>
                         )}
                       </td>
@@ -300,13 +300,13 @@ export default function AuthorsTab({
                           {author.aliases.map((alias) => (
                             <span
                               key={alias.id}
-                              className="inline-flex items-center gap-1 rounded-full border border-ink-700 bg-ink-850 px-2 py-0.5 text-[11px] text-slate-400"
+                              className="inline-flex items-center gap-1 rounded-full border border-sky-200 bg-sky-100 px-2 py-0.5 text-[11px] text-slate-600"
                               title={`Merged identity (${formatInt(alias.n_commits)} commits)`}
                             >
                               {alias.name} &lt;{alias.email}&gt;
                               <button
                                 type="button"
-                                className="text-rose-300 hover:text-rose-200"
+                                className="text-rose-700 hover:text-rose-200"
                                 disabled={busy}
                                 onClick={() => void detach(alias.id)}
                                 title="Detach this identity back into its own author"
@@ -318,7 +318,7 @@ export default function AuthorsTab({
                           {author.raw.map((raw) => (
                             <span
                               key={`${raw.name}~${raw.email}`}
-                              className="inline-flex items-center gap-1 rounded-full border border-ink-800 px-2 py-0.5 text-[11px] text-slate-600"
+                              className="inline-flex items-center gap-1 rounded-full border border-sky-200 px-2 py-0.5 text-[11px] text-slate-600"
                               title={`Pre-mailmap identity (${formatInt(raw.n_commits)} commits) — merged by .mailmap`}
                             >
                               {raw.name} &lt;{raw.email}&gt;

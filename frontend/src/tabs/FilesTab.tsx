@@ -77,7 +77,7 @@ export default function FilesTab({ repo }: { repo: Repo }) {
         <div className="flex flex-wrap items-center gap-1 text-xs">
           <button
             type="button"
-            className="rounded px-1.5 py-0.5 text-slate-400 hover:bg-ink-800 hover:text-slate-200"
+            className="rounded px-1.5 py-0.5 text-slate-600 hover:bg-sky-200 hover:text-slate-800"
             onClick={() => setPath("")}
           >
             repo root
@@ -89,8 +89,8 @@ export default function FilesTab({ repo }: { repo: Repo }) {
                 type="button"
                 className={
                   index === crumbs.length - 1
-                    ? "rounded bg-ink-800 px-1.5 py-0.5 mono text-slate-200"
-                    : "rounded px-1.5 py-0.5 mono text-slate-400 hover:bg-ink-800 hover:text-slate-200"
+                    ? "rounded bg-sky-200 px-1.5 py-0.5 mono text-slate-800"
+                    : "rounded px-1.5 py-0.5 mono text-slate-600 hover:bg-sky-200 hover:text-slate-800"
                 }
                 onClick={() => setPath(crumb.path)}
               >
@@ -98,7 +98,7 @@ export default function FilesTab({ repo }: { repo: Repo }) {
               </button>
             </span>
           ))}
-          <span className="ml-2 rounded bg-ink-850 px-1.5 py-0.5 text-slate-500">{scopeKind}</span>
+          <span className="ml-2 rounded bg-sky-100 px-1.5 py-0.5 text-slate-500">{scopeKind}</span>
           {loading ? <Spinner className="ml-1 h-3 w-3" /> : null}
         </div>
       </section>
@@ -119,12 +119,12 @@ export default function FilesTab({ repo }: { repo: Repo }) {
       {showTree && tree ? (
         <section className="card overflow-hidden">
           <header className="flex items-center gap-2 px-4 py-3">
-            <h3 className="text-sm font-semibold text-white">Immediate children of {path || "the repository root"}</h3>
+            <h3 className="text-sm font-semibold text-slate-950">Immediate children of {path || "the repository root"}</h3>
             <span className="text-xs text-slate-500">click a row to drill into it</span>
           </header>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
-              <thead className="border-y border-ink-800 bg-ink-900/60">
+              <thead className="border-y border-sky-200 bg-sky-50/80">
                 <tr>
                   <th className="th">Object</th>
                   <th className="th text-right">Files</th>
@@ -141,16 +141,16 @@ export default function FilesTab({ repo }: { repo: Repo }) {
                 {tree.children.map((child) => (
                   <tr
                     key={child.path}
-                    className="cursor-pointer border-b border-ink-900 hover:bg-ink-850"
+                    className="cursor-pointer border-b border-sky-100 hover:bg-sky-100"
                     onClick={() => setPath(child.path)}
                     title={child.path}
                   >
                     <td className="td">
                       <div className="flex items-center gap-2">
-                        <span className="mono shrink-0 rounded bg-ink-850 px-1.5 py-0.5 text-[11px] text-slate-500">
+                        <span className="mono shrink-0 rounded bg-sky-100 px-1.5 py-0.5 text-[11px] text-slate-500">
                           {child.kind}
                         </span>
-                        <span className={child.kind === "dir" ? "font-medium text-slate-200" : "text-slate-300"}>
+                        <span className={child.kind === "dir" ? "font-medium text-slate-800" : "text-slate-700"}>
                           {child.name}
                         </span>
                         {child.kind === "dir" ? (
@@ -162,11 +162,11 @@ export default function FilesTab({ repo }: { repo: Repo }) {
                         )}
                       </div>
                     </td>
-                    <td className="td text-right tabular-nums text-slate-400">
+                    <td className="td text-right tabular-nums text-slate-600">
                       {child.kind === "dir" ? formatInt(child.n_files) : "–"}
                     </td>
-                    <td className="td text-right tabular-nums text-emerald-300">{formatDelta(child.added)}</td>
-                    <td className="td text-right tabular-nums text-rose-300">{formatInt(child.removed)}</td>
+                    <td className="td text-right tabular-nums text-emerald-700">{formatDelta(child.added)}</td>
+                    <td className="td text-right tabular-nums text-rose-700">{formatInt(child.removed)}</td>
                     <td className="td text-right tabular-nums">{formatDelta(child.growth)}</td>
                     <td className="td text-right tabular-nums">{formatInt(child.churn)}</td>
                     <td className="td text-right tabular-nums">{formatInt(child.commits)}</td>
@@ -182,7 +182,7 @@ export default function FilesTab({ repo }: { repo: Repo }) {
 
       <section className="card overflow-hidden">
         <header className="flex flex-wrap items-center gap-3 px-4 py-3">
-          <h3 className="text-sm font-semibold text-white">
+          <h3 className="text-sm font-semibold text-slate-950">
             Files under {path || "the repository root"}
           </h3>
           <span className="text-xs text-slate-500">{formatInt(total)} files changed in this commit set</span>
@@ -214,7 +214,7 @@ export default function FilesTab({ repo }: { repo: Repo }) {
           <>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
-                <thead className="border-y border-ink-800 bg-ink-900/60">
+                <thead className="border-y border-sky-200 bg-sky-50/80">
                   <tr>
                     <th className="th">Path</th>
                     <th className="th text-right">Added</th>
@@ -232,35 +232,35 @@ export default function FilesTab({ repo }: { repo: Repo }) {
                   {files.rows.map((row) => (
                     <tr
                       key={row.path}
-                      className="cursor-pointer border-b border-ink-900 hover:bg-ink-850"
+                      className="cursor-pointer border-b border-sky-100 hover:bg-sky-100"
                       onClick={() => setPath(row.path)}
                       title={row.path}
                     >
                       <td className="td max-w-[28rem]">
                         <div className="flex items-center gap-2">
-                          <span className="truncate mono text-slate-200">{row.path}</span>
+                          <span className="truncate mono text-slate-800">{row.path}</span>
                           {row.renamed ? (
-                            <span className="shrink-0 rounded bg-ink-850 px-1.5 py-0.5 text-[11px] text-amber-300" title="Path recorded from a rename (change attributed to the new path)">
+                            <span className="shrink-0 rounded bg-sky-100 px-1.5 py-0.5 text-[11px] text-amber-700" title="Path recorded from a rename (change attributed to the new path)">
                               renamed
                             </span>
                           ) : null}
                           {row.is_binary ? (
-                            <span className="shrink-0 rounded bg-ink-850 px-1.5 py-0.5 text-[11px] text-slate-500" title="Binary files are not measured (spec §2)">
+                            <span className="shrink-0 rounded bg-sky-100 px-1.5 py-0.5 text-[11px] text-slate-500" title="Binary files are not measured (spec §2)">
                               binary
                             </span>
                           ) : null}
                         </div>
                       </td>
-                      <td className="td text-right tabular-nums text-emerald-300">{formatDelta(row.added)}</td>
-                      <td className="td text-right tabular-nums text-rose-300">{formatInt(row.removed)}</td>
+                      <td className="td text-right tabular-nums text-emerald-700">{formatDelta(row.added)}</td>
+                      <td className="td text-right tabular-nums text-rose-700">{formatInt(row.removed)}</td>
                       <td className="td text-right tabular-nums">{formatDelta(row.growth)}</td>
                       <td className="td text-right tabular-nums">{formatInt(row.churn)}</td>
-                      <td className="td text-right tabular-nums text-slate-400">{formatInt(row.commits)}</td>
+                      <td className="td text-right tabular-nums text-slate-600">{formatInt(row.commits)}</td>
                       <td className="td text-right tabular-nums">{formatInt(row.modifications)}</td>
-                      <td className="td text-right tabular-nums text-slate-400">
+                      <td className="td text-right tabular-nums text-slate-600">
                         {formatPercent(row.modification_frequency)}
                       </td>
-                      <td className="td text-right tabular-nums text-slate-400">{row.churn_rate.toFixed(2)}</td>
+                      <td className="td text-right tabular-nums text-slate-600">{row.churn_rate.toFixed(2)}</td>
                       <td className="td">
                         <OwnersBar owners={row.owners} />
                       </td>
@@ -269,7 +269,7 @@ export default function FilesTab({ repo }: { repo: Repo }) {
                 </tbody>
               </table>
             </div>
-            <footer className="flex items-center gap-2 border-t border-ink-800 px-4 py-2 text-xs text-slate-500">
+            <footer className="flex items-center gap-2 border-t border-sky-200 px-4 py-2 text-xs text-slate-500">
               <span>
                 {total === 0 ? "0" : `${offset + 1}–${Math.min(offset + PAGE_SIZE, total)}`} of {formatInt(total)}
               </span>

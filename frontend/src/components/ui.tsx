@@ -5,11 +5,11 @@ import { formatInt, formatPercent } from "../lib/format";
 type Tone = "slate" | "green" | "red" | "amber" | "blue";
 
 const TONES: Record<Tone, string> = {
-  slate: "border-ink-700 bg-ink-800 text-slate-300",
-  green: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
-  red: "border-rose-500/30 bg-rose-500/10 text-rose-300",
-  amber: "border-amber-500/30 bg-amber-500/10 text-amber-300",
-  blue: "border-accent/30 bg-accent/10 text-accent",
+  slate: "border-sky-200 bg-sky-50 text-slate-700",
+  green: "border-emerald-200 bg-emerald-50 text-emerald-700",
+  red: "border-rose-200 bg-rose-50 text-rose-700",
+  amber: "border-amber-200 bg-amber-50 text-amber-700",
+  blue: "border-blue-200 bg-blue-50 text-blue-700",
 };
 
 export function Badge({ tone = "slate", children }: { tone?: Tone; children: ReactNode }) {
@@ -47,7 +47,7 @@ export function StatCard({
   tone?: "pos" | "neg";
   title?: string;
 }) {
-  const valueClass = tone === "pos" ? "text-emerald-300" : tone === "neg" ? "text-rose-300" : "text-white";
+  const valueClass = tone === "pos" ? "text-emerald-700" : tone === "neg" ? "text-rose-700" : "text-slate-950";
   return (
     <div className="card px-4 py-3" title={title}>
       <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
@@ -60,7 +60,7 @@ export function StatCard({
 export function Spinner({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`inline-block h-4 w-4 animate-spin rounded-full border-2 border-ink-700 border-t-accent ${className}`}
+      className={`inline-block h-4 w-4 animate-spin rounded-full border-2 border-sky-200 border-t-accent ${className}`}
       aria-label="loading"
     />
   );
@@ -68,7 +68,7 @@ export function Spinner({ className = "" }: { className?: string }) {
 
 export function ErrorBanner({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+    <div className="flex items-center gap-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
       <span className="flex-1">{message}</span>
       {onRetry ? (
         <button type="button" className="btn-ghost" onClick={onRetry}>
@@ -82,7 +82,7 @@ export function ErrorBanner({ message, onRetry }: { message: string; onRetry?: (
 export function EmptyState({ title, children }: { title: string; children?: ReactNode }) {
   return (
     <div className="card grid place-items-center gap-2 px-6 py-12 text-center">
-      <div className="text-sm font-medium text-slate-300">{title}</div>
+      <div className="text-sm font-medium text-slate-800">{title}</div>
       {children ? <div className="max-w-md text-xs text-slate-500">{children}</div> : null}
     </div>
   );
@@ -106,7 +106,7 @@ export function OwnersBar({ owners }: { owners: FileOwner[] }) {
     .map((owner) => `${owner.name}: ${formatInt(owner.churn)} churn (${formatPercent(owner.share)})`)
     .join("\n");
   return (
-    <div className="flex h-1.5 w-28 overflow-hidden rounded-full bg-ink-800" title={title}>
+    <div className="flex h-1.5 w-28 overflow-hidden rounded-full bg-sky-200" title={title}>
       {owners.map((owner, index) => (
         <div
           key={owner.author_id}

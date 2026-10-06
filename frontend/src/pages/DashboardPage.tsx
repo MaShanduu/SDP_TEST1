@@ -87,7 +87,7 @@ export default function DashboardPage() {
         <ErrorBanner message={repo.error ?? "Ingestion failed."} onRetry={() => void load()} />
       ) : (
         <div className="card p-4">
-          <div className="mb-2 text-sm text-slate-300">Ingesting repository…</div>
+          <div className="mb-2 text-sm text-slate-700">Ingesting repository…</div>
           {repo.job ? <JobProgress job={repo.job} /> : <Spinner />}
           <p className="mt-2 text-xs text-slate-500">
             The dashboard becomes available as soon as ingestion finishes; this page updates itself.
@@ -106,7 +106,7 @@ function RepoHeader({ repo }: { repo: Repo }) {
       </Link>
       <div className="min-w-0">
         <div className="flex items-center gap-2">
-          <h1 className="truncate text-base font-semibold text-white" title={repo.name}>
+          <h1 className="truncate text-base font-semibold text-slate-950" title={repo.name}>
             {repo.name}
           </h1>
           <StatusBadge status={repo.status} />
@@ -118,7 +118,7 @@ function RepoHeader({ repo }: { repo: Repo }) {
         </p>
       </div>
       {repo.status === "ready" ? (
-        <div className="ml-auto flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-slate-400">
+        <div className="ml-auto flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-slate-600">
           <span>
             <span className="text-slate-600">commits </span>
             {formatInt(repo.n_commits)}
@@ -135,10 +135,10 @@ function RepoHeader({ repo }: { repo: Repo }) {
             <span className="text-slate-600">authors </span>
             {formatInt(repo.n_authors)}
           </span>
-          <span className="text-emerald-300" title="Added lines over the full history">
+          <span className="text-emerald-700" title="Added lines over the full history">
             {formatDelta(repo.total_added)}
           </span>
-          <span className="text-rose-300" title="Removed lines over the full history">
+          <span className="text-rose-700" title="Removed lines over the full history">
             -{formatInt(repo.total_removed)}
           </span>
         </div>
@@ -183,7 +183,7 @@ function DashboardBody({ repo }: { repo: Repo }) {
     <>
       <FilterBar repo={repo} authors={authors} />
       {authorsError ? <ErrorBanner message={`Authors failed to load: ${authorsError}`} onRetry={() => void reloadAuthors()} /> : null}
-      <div className="flex flex-wrap items-center gap-1 border-b border-ink-800 pb-2">
+      <div className="flex flex-wrap items-center gap-1 border-b border-sky-200 pb-2">
         {TABS.map(({ key, label }) => (
           <button
             key={key}

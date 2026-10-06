@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-ink-950 text-slate-200;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-ink-950;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded bg-ink-700;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-ink-700/60 bg-ink-900/70 shadow-lg shadow-black/20;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-primary {
+    @apply btn bg-accent/90 text-ink-950 hover:bg-accent;
+  }
+  .btn-ghost {
+    @apply btn border border-ink-700 text-slate-300 hover:bg-ink-800;
+  }
+  .btn-danger {
+    @apply btn border border-rose-500/30 text-rose-300 hover:bg-rose-500/10;
+  }
+  .input {
+    @apply rounded-lg border border-ink-700 bg-ink-850 px-3 py-1.5 text-sm text-slate-200 outline-none placeholder:text-slate-600 focus:border-accent/70;
+  }
+  .tab {
+    @apply rounded-lg px-3 py-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200;
+  }
+  .tab-active {
+    @apply bg-ink-800 text-white;
+  }
+  .th {
+    @apply px-3 py-2 text-left text-xs font-medium uppercase tracking-wide text-slate-500;
+  }
+  .td {
+    @apply px-3 py-2 text-sm;
+  }
+  .mono {
+    @apply font-mono text-[13px];
+  }
+}

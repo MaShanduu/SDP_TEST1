@@ -1,0 +1,6 @@
+node_modules
+*.local
+.vite
+
+# Note: dist is intentionally NOT ignored -- the built dashboard is committed so
+# the backend alone can serve the UI without Node.js on the grading machine.
